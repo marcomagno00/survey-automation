@@ -1,4 +1,16 @@
+
 import os
+import csv
+import codecs
+import openpyxl
+
+from dataclasses import dataclass, fields
+from openpyxl import Workbook
+
+from survey_item import survey_item
+
+from utility import write_dataclass_to_csv
+
 
 
 ### leggo gli input dalle cartelle e li inserisco nelle variabili
@@ -17,41 +29,24 @@ with open(input_folder + specific_folder + r"\testopresentazionecaso.txt", "r", 
 immagine_html = f'<img src="{input_folder + specific_folder + r"\immaginepresentazionecaso.png"}">'
 
 
-def read_flags_from_input():
-
-    # presentazione caso
-    testopresentazionecaso = input_folder + "/PresentazioneCaso/"
-    immaginepresentazionecaso
-
-    # confidenza iniziale
-    testoconfidenzainiziale
-
-    # opzioni iniziali
-    optioninziale1
-    optioniniziale2 
-    optioniniziale3
-
-    # presentazione supporto
-    testopresentazionesupporto
-
-    # advice
-    testoadvice1
-    immagineadvice1
-    spiegazioneadvice1
-    testoadvice2
-    immagineadvice2
-    spiegazioneadvice2
-
-    # confidenza finale
-    testoconfidenzafinale
-
-    # opzioni finali
-    optionfinale1
-    optionfinale2
-    optionfinale3
-
-# creo Case A (caso privo di supporto AI)
 
 
 
-# creo Case B (caso che implementa supporto AI)
+
+
+
+
+## MAIN
+
+# Example usage
+if __name__ == "__main__":
+    # Create an instance of our dataclass
+    item = survey_item()
+    item.id = "1"
+    item.related_id = "2"
+    item.class_ = "class"
+    item.type_and_scale = "type/scale"
+    item.help = "ciaooo"
+
+    # Write it to an Excel file
+    write_dataclass_to_csv(item, "prova.csv")
