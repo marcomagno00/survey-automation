@@ -1,12 +1,12 @@
 from dataclasses import dataclass, field
 from typing import Any
 
-
-# "survey_item" rappresenta la singola riga dell'output
+# "survey_item" rappresenta la singola riga dell'output:
+# contiene come variabili ogni colonna possibile dell'intestazione del questionario.
 # l'unione di più "survey_item" rapprensenta il questionario
-# contiene come variabili ogni colonna possibile dell'intestazione del questionario
 
-# è necessario introdurre @dataclass in quanto due delle variabili utilizzate vanno in conflitto con le keyword riservate di python, 
+# è necessario introdurre @dataclass per evitare errori in fase di serializzazione 
+# in quanto due delle variabili utilizzate vanno in conflitto con le keyword riservate di Python,  
 # in particolare le seguenti variabili sono state riscritte con gli alias:
 
 # class -> class_
@@ -17,7 +17,6 @@ class survey_item:
 
     # class -> class_
     # type/scale -> type_and_scale
-
 
     id = None
     related_id = None
