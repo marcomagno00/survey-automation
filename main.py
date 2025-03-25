@@ -1,5 +1,6 @@
 import os
 
+
 ### leggo gli input dalle cartelle e li inserisco nelle variabili
 
 # path della cartella di input
@@ -16,10 +17,10 @@ with open(input_folder + specific_folder + r"\testopresentazionecaso.txt", "r", 
 immagine_html = f'<img src="{input_folder + specific_folder + r"\immaginepresentazionecaso.png"}">'
 
 
-def read_from_input():
+def read_flags_from_input():
 
     # presentazione caso
-    testopresentazionecaso = path + "/PresentazioneCaso/"
+    testopresentazionecaso = input_folder + "/PresentazioneCaso/"
     immaginepresentazionecaso
 
     # confidenza iniziale
