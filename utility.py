@@ -36,3 +36,18 @@ def write_dataclass_to_csv(dataclass_obj, filename):
         writer = csv.writer(csv_file)
         writer.writerow(header)  # Write header row
         writer.writerow(row)     # Write data row
+
+
+def add_row_to_csv(dataclass_obj, filename):
+    # Open the CSV file in append mode
+    with open(filename, mode='a', newline='') as file:
+        writer = csv.writer(file)
+
+        # If the file is empty, write the headers first
+        if file.tell() == 0:
+            headers = [field.name for field in fields(dataclass_obj)]
+            writer.writerow(headers)
+
+        # Write the values of the dataclass instance as a new row
+        row = [getattr(dataclass_obj, field.name) for field in fields(dataclass_obj)]
+        writer.writerow(row)

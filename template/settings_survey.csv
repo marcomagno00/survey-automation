@@ -1,0 +1,77 @@
+﻿class;type/scale;name;relevance;text;help;language
+S;;sid;;;;
+S;;gsid;;1;;
+S;;admin;;inherit;;
+S;;adminemail;;inherit;;
+S;;anonymized;;N;;
+S;;format;;I;;
+S;;savetimings;;I;;
+S;;template;;inherit;;
+S;;language;;it;;
+S;;additional_languages;;;;
+S;;datestamp;;I;;
+S;;usecookie;;I;;
+S;;allowregister;;I;;
+S;;allowsave;;I;;
+S;;autonumber_start;;0;;
+S;;autoredirect;;I;;
+S;;allowprev;;I;;
+S;;printanswers;;I;;
+S;;ipaddr;;I;;
+S;;ipanonymize;;I;;
+S;;refurl;;I;;
+S;;showsurveypolicynotice;;0;;
+S;;publicstatistics;;I;;
+S;;showdatapolicybutton;;0;;
+S;;showlegalnoticebutton;;0;;
+S;;publicgraphs;;I;;
+S;;listpublic;;I;;
+S;;htmlemail;;I;;
+S;;sendconfirmation;;I;;
+S;;tokenanswerspersistence;;I;;
+S;;assessments;;I;;
+S;;usecaptcha;;E;;
+S;;usetokens;;N;;
+S;;bounce_email;;inherit;;
+S;;emailresponseto;;inherit;;
+S;;emailnotificationto;;inherit;;
+S;;tokenlength;;-1;;
+S;;showxquestions;;I;;
+S;;showgroupinfo;;I;;
+S;;shownoanswer;;I;;
+S;;showqnumcode;;I;;
+S;;bounceprocessing;;N;;
+S;;showwelcome;;I;;
+S;;showprogress;;I;;
+S;;questionindex;;-1;;
+S;;navigationdelay;;-1;;
+S;;nokeyboard;;I;;
+S;;alloweditaftercompletion;;I;;
+S;;tokenencryptionoptions;;;;
+SL;;surveyls_survey_id;;;;it
+SL;;surveyls_policy_error;;;;it
+SL;;surveyls_legal_notice;;;;it
+SL;;surveyls_email_invite_subj;;Invito a partecipare all'indagine;;it
+SL;;surveyls_email_invite;;"Gentile {FIRSTNAME},<br /><br />√® invitato a partecipare ad un'indagine on line.<br /><br />L'indagine √® intitolata:<br />""{SURVEYNAME}""<br /><br />""{SURVEYDESCRIPTION}""<br /><br />Per partecipare fare click sul link in basso.<br /><br />Cordiali saluti,{ADMINNAME} ({ADMINEMAIL})<br /><br />----------------------------------------------<br />Fare click qui per accedere al questionario e rispondere alle domande relative:<br />{SURVEYURL}<br /><br />Se non si intende partecipare a questa indagine e non si vogliono ricevere altri inviti, si pu√≤ cliccare sul seguente collegamento:<br />{OPTOUTURL}<br /><br />Se √® presente in blacklist ma vuole partecipare a questa indagine e ricevere inviti, fare click al seguente link:<br />{OPTINURL}";;it
+SL;;surveyls_email_remind_subj;;Promemoria per partecipare all'indagine;;it
+SL;;surveyls_email_remind;;"Egregio/a {FIRSTNAME},<br />Recentemente ha ricevuto un invito a partecipare ad un'indagine on line.<br /><br />Abbiamo notato che non ha ancora completato il questionario. Con l'occasione Le ricordiamo che il questionario √® ancora disponibile.<br /><br />L'indagine √® intitolata:<br />""{SURVEYNAME}""<br /><br />""{SURVEYDESCRIPTION}""<br /><br />Per partecipare fare clic sul link qui sotto.<br /><br />Cordiali saluti,<br /><br />{ADMINNAME} ({ADMINEMAIL})<br /><br />----------------------------------------------<br />Fare clic qui per accedere all'indagine e rispondere al questionario:<br />{SURVEYURL}<br /><br />Se non si intende partecipare a questa indagine e non si vogliono ricevere altri inviti, si pu√≤ cliccare sul seguente collegamento:<br />{OPTOUTURL}";;it
+SL;;surveyls_email_register_subj;;Conferma di registrazione all'indagine;;it
+SL;;surveyls_email_register;;Egregio/a {FIRSTNAME},<br /><br />Lei (o qualcuno che ha utilizzato il suo indirizzo e-mail) si √® registrato per partecipare all'indagine on line intitolata {SURVEYNAME}.<br /><br />Per completare il questionario fare clic sul seguente indirizzo:<br /><br />{SURVEYURL}<br /><br />Se ha qualche domanda, o se non si √® registrato e ritiene che questa e-mail ti sia pervenuta per errore, la preghiamo di contattare  {ADMINNAME} all'indirizzo {ADMINEMAIL}.;;it
+SL;;surveyls_email_confirm_subj;;"Conferma della partecipazione all&#039;indagine";;it
+SL;;surveyls_email_confirm;;Gentile {FIRSTNAME},<br /><br />Questa e-mail le √® stata inviata per confermarle che ha completato correttamente l'indagine intitolata {SURVEYNAME}  e che le sue risposte sono state salvate. Grazie per la partecipazione.<br /><br />Se ha ulteriori domande circa questo messaggio, la prego di contattare {ADMINNAME} all'indirizzo e-mail {ADMINEMAIL}.<br /><br />Cordiali saluti<br /><br />{ADMINNAME};;it
+SL;;surveyls_dateformat;;5;;it
+SL;;surveyls_alias;;;;it
+SL;;email_admin_notification_subj;;Invio di una risposta all'indagine {SURVEYNAME};;it
+SL;;email_admin_notification;;Salve,<br /><br />Una nuova risposta √© stata inviata per l'indagine '{SURVEYNAME}'.<br /><br />Fare click sul link seguente per vedere le risposte individuali:<br />{VIEWRESPONSEURL}<br /><br />Fare click sul link seguente per modificare le risposte individuali:<br />{EDITRESPONSEURL}<br /><br />Fare clic sul link seguente per visualizzare le statistiche:<br />{STATISTICSURL};;it
+SL;;email_admin_responses_subj;;Invio di una risposta all'indagine {SURVEYNAME} con risultati;;it
+SL;;email_admin_responses;;Salve,<br /><br />Una nuova risposta √® stata inviata dall'indagine '{SURVEYNAME}'.<br /><br />Fare clic sul link seguente per vedere la risposta individuale:<br />{VIEWRESPONSEURL}<br /><br />Fare clic sul link seguente per modificare la risposta individuale:<br />{EDITRESPONSEURL}<br /><br />Fare clic sul link seguente per visualizzare le statistiche:<br />{STATISTICSURL}<br /><br /><br />Le seguenti risposte sono state date dal partecipante:<br />{ANSWERTABLE};;it
+SL;;surveyls_numberformat;;0;;it
+SL;;surveyls_language;;it;;it
+SL;;surveyls_title;;;;it
+SL;;surveyls_description;;;;it
+SL;;surveyls_welcometext;;;;it
+SL;;surveyls_endtext;;;;it
+SL;;surveyls_policy_notice;;;;it
+SL;;surveyls_policy_notice_label;;;;it
+SL;;surveyls_url;;;;it
+SL;;surveyls_urldescription;;;;it
