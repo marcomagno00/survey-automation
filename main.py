@@ -59,9 +59,65 @@ if __name__ == "__main__":
             survey_settings.append(item)
 
 
-    # creo una lista di survey_item per definire i casi
     # leggo dalle cartelle di input e scrivo e scrivo i dati
-    survey_cases = []
+
+    
+    ended = False
+    index = 1
+
+    # creo una lista di "survey_item" che contiene i casi del gruppo A
+    survey_cases_A = []
+
+    # casoA
+
+    while (not ended): # finchè ci sono immagini per la presentazione caso
+        
+        case = []
+        # gruppo
+        case.append(group(type_and_scale = "1", name = f"Case{index}a"))
+
+        # question
+        case.append(question(type_and_scale = "L", name = f"HD{index}", text = "E' FRESCO O NO? e IMMAGINE PESCE", mandatory = "1"))
+        
+        # answer decisioneiniziale1
+        case.append(answer(name = "1", text = "FRESCO"))
+        # answer decisioneiniziale2
+        case.append(answer(name = "0", text = "NON FRESCO"))
+
+        # question "Quanto sei confidente della risposta?"
+        case.append(question(type_and_scale = "1", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "1"))
+
+        # answer 1 "per nulla confidente"
+        case.append(answer(name = "1", text = "per nulla confidente"))
+        # answer 2
+        case.append(answer(name = "2", text = ""))
+        # answer 3
+        case.append(answer(name = "3", text = ""))
+        # answer 4 "totalemente confidente"
+        case.append(answer(name = "4", text = "totalemente confidente"))
+
+        ended = True
+
+    survey_cases_A.append(case)
+
+
+    for case in survey_cases_A:
+       for group_ in case:
+            add_row_to_csv(group_, "outputdiprova2.csv")
+
+
+
+
+
+
+
+
+
+        
+    
+
+
+
     
 
 
@@ -74,8 +130,4 @@ if __name__ == "__main__":
 
 
 
-    # Create an instance of our dataclass
-    item = answer(id = "3", name= "si", text= "sicuramente si")
-    item2 = group(id = "1", type_and_scale= "1", name= "gruppo1")
-    # Write it to a csv file
-    add_row_to_csv(item2, "output.csv")
+    

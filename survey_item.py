@@ -171,20 +171,18 @@ class survey_item:
 
 # sottocategorie di "survey_item" possibili
 class group(survey_item):
-    def __init__(self, id: str, type_and_scale: str, name: str):
+    def __init__(self, type_and_scale: str, name: str):
         super().__init__()
         
-        self.id = id
         self.class_ = "G"
         self.type_and_scale = type_and_scale
         self.name = name
         self.language = "it"
 
 class question(survey_item):
-    def __init__(self, id: str, type_and_scale: str, name: str, text: str, mandatory: str):
+    def __init__(self, type_and_scale: str, name: str, text: str, mandatory: str):
         super().__init__()
 
-        self.id = id
         self.class_ = "Q"
         self.type_and_scale = type_and_scale
         self.name = name
@@ -194,10 +192,9 @@ class question(survey_item):
         self.mandatory = mandatory
 
 class sub_question(survey_item):
-    def __init__(self, id: str, type_and_scale: str, name: str, text: str, mandatory: str):
+    def __init__(self, type_and_scale: str, name: str, text: str, mandatory: str):
         super().__init__()
 
-        self.id = id
         self.class_ = "SQ"
         self.type_and_scale = type_and_scale
         self.name = name
@@ -207,14 +204,11 @@ class sub_question(survey_item):
         self.mandatory = mandatory
 
 class answer(survey_item):
-    def __init__(self, id: str, name: str, text: str):
+    def __init__(self,  name: str, text: str):
         super().__init__()
         
-        self.id = id
         self.class_ = "A"
         self.type_and_scale = "0"
         self.name = name
-        self.relevance = "1"
         self.text = text
         self.language = "it"
-
