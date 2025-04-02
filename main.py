@@ -88,7 +88,7 @@ if __name__ == "__main__":
         case.append(answer(name = "0", text = "NON FRESCO"))
 
         # question "Quanto sei confidente della risposta?"
-        case.append(question(type_and_scale = "1", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "Y"))
+        case.append(question(type_and_scale = "F", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "Y"))
 
         # answer 1 "per nulla confidente"
         case.append(answer(name = "1", text = "per nulla confidente"))
