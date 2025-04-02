@@ -1,15 +1,15 @@
 import os
 import csv
 import codecs
-import openpyxl
+# import openpyxl
 
 from dataclasses import dataclass, fields
-from openpyxl import Workbook
+# from openpyxl import Workbook
 
-from survey_item import survey_item, group, question, sub_question, answer
+from survey_item import *
+from utility import *
 
-from utility import write_dataclass_to_csv, add_row_to_csv
-import template
+
 
 ### leggo gli input dalle cartelle e li inserisco nelle variabili
 
@@ -41,11 +41,14 @@ if __name__ == "__main__":
     # creo una lista di survey_item per definire i settings
     # leggo dal file settings_survey.csv e scrivo e scrivo i dati
 
+    
+    file_path_settings = r"template/settings_survey.tsv"
     survey_settings = []
-    file_path = r"/Users/marcogrande/Development/Tesi/survey-automation/template/settings_survey.csv"
+    
+    with open(file_path_settings, "r") as file:
+        reader = csv.reader(file, delimiter="\t")
 
-    with open(file_path, "r") as file:
-        reader = csv.reader(file, delimiter=";")
+        next(reader, None) # skippa la prima riga
 
         for row in reader:
             
@@ -77,7 +80,7 @@ if __name__ == "__main__":
         case.append(group(type_and_scale = "1", name = f"Case{index}a"))
 
         # question
-        case.append(question(type_and_scale = "L", name = f"HD{index}", text = "E' FRESCO O NO? e IMMAGINE PESCE", mandatory = "1"))
+        case.append(question(type_and_scale = "L", name = f"HD{index}", text = "E' FRESCO O NO? e IMMAGINE PESCE", mandatory = "Y"))
         
         # answer decisioneiniziale1
         case.append(answer(name = "1", text = "FRESCO"))
@@ -85,7 +88,7 @@ if __name__ == "__main__":
         case.append(answer(name = "0", text = "NON FRESCO"))
 
         # question "Quanto sei confidente della risposta?"
-        case.append(question(type_and_scale = "1", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "1"))
+        case.append(question(type_and_scale = "1", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "Y"))
 
         # answer 1 "per nulla confidente"
         case.append(answer(name = "1", text = "per nulla confidente"))
@@ -99,11 +102,15 @@ if __name__ == "__main__":
         ended = True
 
     survey_cases_A.append(case)
-
+    
+    
+    for item in survey_settings:
+        add_row_to_tsv(item, "output6.tsv")
 
     for case in survey_cases_A:
        for group_ in case:
-            add_row_to_csv(group_, "outputdiprova2.csv")
+            add_row_to_tsv(group_, "output6.tsv")
+
 
 
 

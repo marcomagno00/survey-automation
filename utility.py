@@ -22,7 +22,7 @@ def write_dataclass_to_excel(dataclass_obj, filename):
     # Save the workbook
     workbook.save(filename)
 
-def write_dataclass_to_csv(dataclass_obj, filename):
+def write_dataclass_to_tsv(dataclass_obj, filename):
     # Extract aliases (or field names if no alias)
     header = []
     row = []
@@ -32,20 +32,19 @@ def write_dataclass_to_csv(dataclass_obj, filename):
         row.append(getattr(dataclass_obj, field_info.name))
     
     # Write to CSV
-    with open(filename, mode="w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.writer(csv_file)
+    with open(filename, mode="w", newline="", encoding="utf-8") as tsv_file:
+        writer = csv.writer(tsv_file, delimiter="\t")
         writer.writerow(header)  # Write header row
         writer.writerow(row)     # Write data row
 
-
-def add_row_to_csv(dataclass_obj, filename):
-    # Open the CSV file in append mode
+def add_row_to_tsv(dataclass_obj, filename):
+    # Open the TSV file in append mode
     with open(filename, mode='a', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter="\t")
 
         # If the file is empty, write the headers first
         if file.tell() == 0:
-            headers = [field.name for field in fields(dataclass_obj)]
+            headers = [field_info.metadata.get("alias", field_info.name) for field_info in fields(dataclass_obj)]
             writer.writerow(headers)
 
         # Write the values of the dataclass instance as a new row
