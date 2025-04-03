@@ -170,6 +170,7 @@ class survey_item:
 
 
 # sottocategorie di "survey_item" possibili
+
 class group(survey_item):
     def __init__(self, type_and_scale: str, name: str):
         super().__init__()
@@ -180,7 +181,7 @@ class group(survey_item):
         self.language = "it"
 
 class question(survey_item):
-    def __init__(self, type_and_scale: str, name: str, text: str, mandatory: str):
+    def __init__(self,  name: str, text: str,  type_and_scale: str = "L", mandatory: str = "Y"):
         super().__init__()
 
         self.class_ = "Q"
@@ -190,6 +191,7 @@ class question(survey_item):
         self.text = text
         self.language = "it"
         self.mandatory = mandatory
+
 
 class sub_question(survey_item):
     def __init__(self, type_and_scale: str, name: str, text: str, mandatory: str):

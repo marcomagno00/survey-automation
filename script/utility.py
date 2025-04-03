@@ -1,7 +1,25 @@
 from dataclasses import dataclass, fields
 from openpyxl import Workbook
 import csv
+import os
 
+
+def give_first_txt_from_folder(folder_path):
+    # Get the first file from the folder
+    for file_name in os.listdir(folder_path):
+        # check if file ends with .txt
+        if file_name.endswith(".txt"):
+            # return the first .txt file found
+            return os.path.join(folder_path, file_name)
+    return None
+
+def read_first_line_from_txt(file_path):
+    if file_path is None:
+        return None
+    # Open the file and read the first line
+    with open(file_path, "r", encoding="utf-8") as file:
+        first_line = file.readline().strip()
+    return first_line
 
 def write_dataclass_to_excel(dataclass_obj, filename):
     
