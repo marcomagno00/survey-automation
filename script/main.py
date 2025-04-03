@@ -1,10 +1,10 @@
 import os
 import csv
 import codecs
-# import openpyxl
+import openpyxl
 
 from dataclasses import dataclass, fields
-# from openpyxl import Workbook
+from openpyxl import Workbook
 
 from survey_item import *
 from utility import *
@@ -38,42 +38,41 @@ from utility import *
 
 if __name__ == "__main__":
 
-    # creo una lista di survey_item per definire i settings
-    # leggo dal file settings_survey.csv e scrivo e scrivo i dati
-
-    
+    # path
     file_path_settings = r"template/settings_survey.tsv"
+    file_path_output = r"output/output3.tsv"
+
+    # creo una lista di survey_item per definire i settings
     survey_settings = []
     
+    # leggo dal file settings_survey.tsv e scrivo e scrivo i dati
     with open(file_path_settings, "r") as file:
         reader = csv.reader(file, delimiter="\t")
-
         next(reader, None) # skippa la prima riga
-
+        
         for row in reader:
-            
             item = survey_item()
-
             item.class_ = row[0]
             item.name = row[2]
             item.text = row[4]
             item.language = row[6]
-
             survey_settings.append(item)
 
 
     # leggo dalle cartelle di input e scrivo e scrivo i dati
 
     
-    ended = False
-    index = 1
+    loop_ended = False # booleano per terminare il loop
+    index = 1 # indice per contare i casi
 
     # creo una lista di "survey_item" che contiene i casi del gruppo A
     survey_cases_A = []
 
+
+
     # casoA
 
-    while (not ended): # finchè ci sono immagini per la presentazione caso
+    while (not loop_ended): # finchè ci sono immagini per la presentazione caso
         
         case = []
         # gruppo
@@ -99,17 +98,17 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "totalemente confidente"))
 
-        ended = True
+        loop_ended = True
 
     survey_cases_A.append(case)
     
     
     for item in survey_settings:
-        add_row_to_tsv(item, "output6.tsv")
+        add_row_to_tsv(item, file_path_output)
 
     for case in survey_cases_A:
        for group_ in case:
-            add_row_to_tsv(group_, "output6.tsv")
+            add_row_to_tsv(group_, file_path_output)
 
 
 
