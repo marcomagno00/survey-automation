@@ -10,27 +10,6 @@ from survey_item import *
 from utility import *
 
 
-
-
-### leggo gli input dalle cartelle e li inserisco nelle variabili
-
-# path della cartella di input
-#input_folder = r"C:\Development\Tesi\input"
-
-## Presentazione Caso
-#specific_folder = r"\Presentazione Caso"
-
-# testo
-#with open(input_folder + specific_folder + r"\testopresentazionecaso.txt", "r", encoding="utf-8") as file:
-#    testopresentazionecaso = file.read()
-
-# immagine
-#immagine_html = f'<img src="{input_folder + specific_folder + r"\immaginepresentazionecaso.png"}">'
-
-
-
-
-
 ## MAIN
 
 if __name__ == "__main__":
@@ -58,20 +37,14 @@ if __name__ == "__main__":
     text_presentazione_caso = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_caso))
     text_presentazione_supporto = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_supporto))
 
-    print(r"testo presentazione caso:", text_presentazione_caso)
-    print(r"testo presentazione supporto: ", text_presentazione_supporto)
-    print(r"testo confidenza iniziale: ", text_confidenza_iniziale)
-    print(r"testo confidenza finale: ", text_confidenza_finale)
 
-    
     # creo una lista di survey_item per definire i settings
     survey_settings = []
     
-    # leggo dal file settings_survey.tsv e scrivo i dati nella lista survey_settings
+    # leggo dal file settings.tsv e scrivo i dati nella lista survey_settings
     with open(file_path_settings, "r") as file:
         reader = csv.reader(file, delimiter="\t")
         next(reader, None) # skippa la prima riga
-        
         for row in reader:
             item = survey_item()
             item.class_ = row[0]
@@ -80,25 +53,30 @@ if __name__ == "__main__":
             item.language = row[6]
             survey_settings.append(item)
 
+    # se non ci sono immagini, esco
+    if count_images_in_folder(file_path_presentazione_caso) == 0:
+        print("Nessuna immagine trovata nella cartella di presentazione caso.")
+        exit(1)
+
+    # rinomino le immagini presenti nella cartella di presentazione caso
+    rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
     
-    loop_ended = False # booleano per terminare il loop
-    index = 1 # indice per contare i casi
 
-    # creo una lista di "survey_item" che contiene i casi del gruppo A
-    survey_cases_A = []
+    index_case = 1 # indice per i casi (1, 2, 3...)
+    max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
+    survey_cases_A = [] # lista di "survey_item" che contiene i casi del gruppo A
+    survey_cases_B = [] # lista di "survey_item" che contiene i casi del gruppo B (casi con AI)
 
-
-
-    # casoA
-
-    while (not loop_ended): # finchè ci sono immagini per la presentazione caso
+    # casi del gruppo A
+    while (index_case <= max_index_case): # finchè ci sono immagini per la presentazione caso
         
         case = []
         # gruppo
-        case.append(group(type_and_scale = "1", name = f"Case{index}a"))
+        case.append(group(type_and_scale = "0", name = f"Case{index_case}a"))
 
         # question
-        case.append(question(type_and_scale = "L", name = f"HD{index}", text = "E' FRESCO O NO? e IMMAGINE PESCE"))
+        case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text_presentazione_caso, mandatory = "Y")) # testo
+        case.append(question(type_and_scale = "I", name = f"IM{index_case}", text = f'<img src="presentazione_caso_{index_case}.png">', mandatory = "Y")) # immagine
         
         # answer decisioneiniziale1
         case.append(answer(name = "1", text = "FRESCO"))
@@ -106,7 +84,7 @@ if __name__ == "__main__":
         case.append(answer(name = "0", text = "NON FRESCO"))
 
         # question "Quanto sei confidente della risposta?"
-        case.append(question(type_and_scale = "F", name = f"CONF{index}", text = "Quanto sei confidente della risposta?", mandatory = "Y"))
+        case.append(question(type_and_scale = "F", name = f"CONF{index_case}", text = text_confidenza_iniziale, mandatory = "Y"))
 
         # answer 1 "per nulla confidente"
         case.append(answer(name = "1", text = "per nulla confidente"))
@@ -117,35 +95,31 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "totalemente confidente"))
 
-        loop_ended = True
-
-    survey_cases_A.append(case)
+        index_case += 1 # incremento l'indice del caso
+        survey_cases_A.append(case)
     
+
+
     # OUTPUT
     
-    print(text_presentazione_caso)
-
-
-    # settings
-    for item in survey_settings:
-        add_row_to_tsv(item, file_path_output)
+    # print dei dati letti
+    print()
+    print(r"testo presentazione caso:", text_presentazione_caso)
+    print(r"testo presentazione supporto:", text_presentazione_supporto)
+    print(r"testo confidenza iniziale:", text_confidenza_iniziale)
+    print(r"testo confidenza finale:", text_confidenza_finale)
+    print(r"lunghezza di survey_cases_A:", len(survey_cases_A))
+    print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
+    print()
     
-    # survey
-    for case in survey_cases_A:
-       for group_ in case:
-            add_row_to_tsv(group_, file_path_output)
+    rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
 
-
-
-
-
-
-
-
-
-
-        
+    # svuoto output.tsv se esiste già
+    with open(file_path_output, "w", encoding="utf-8") as f:
+        pass
     
+    # creo il file di output output.tsv
+    create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output)
 
 
 

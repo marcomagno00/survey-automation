@@ -169,7 +169,7 @@ class survey_item:
 
 
 
-# sottocategorie di "survey_item" possibili
+# costruttori per ogni sottocategorie di "survey_item" possibili
 
 class group(survey_item):
     def __init__(self, type_and_scale: str, name: str):
@@ -191,7 +191,6 @@ class question(survey_item):
         self.text = text
         self.language = "it"
         self.mandatory = mandatory
-
 
 class sub_question(survey_item):
     def __init__(self, type_and_scale: str, name: str, text: str, mandatory: str):
