@@ -37,9 +37,8 @@ if __name__ == "__main__":
     text_presentazione_caso = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_caso))
     text_presentazione_supporto = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_supporto))
 
-
-    # creo una lista di survey_item per definire i settings
-    survey_settings = []
+    
+    survey_settings = [] # lista di survey_item per definire i settings
     
     # leggo dal file settings.tsv e scrivo i dati nella lista survey_settings
     with open(file_path_settings, "r") as file:
@@ -61,22 +60,22 @@ if __name__ == "__main__":
     # rinomino le immagini presenti nella cartella di presentazione caso
     rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
     
-
     index_case = 1 # indice per i casi (1, 2, 3...)
     max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
     survey_cases_A = [] # lista di "survey_item" che contiene i casi del gruppo A
     survey_cases_B = [] # lista di "survey_item" che contiene i casi del gruppo B (casi con AI)
 
-    # casi del gruppo A
     while (index_case <= max_index_case): # finchè ci sono immagini per la presentazione caso
         
+        # casi del gruppo A
         case = []
+
         # gruppo
         case.append(group(type_and_scale = "0", name = f"Case{index_case}a"))
 
         # question
-        case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text_presentazione_caso, mandatory = "Y")) # testo
-        case.append(question(type_and_scale = "I", name = f"IM{index_case}", text = f'<img src="presentazione_caso_{index_case}.png">', mandatory = "Y")) # immagine
+        text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
+        case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text, mandatory = "Y")) # testo e immagine
         
         # answer decisioneiniziale1
         case.append(answer(name = "1", text = "FRESCO"))
@@ -95,8 +94,13 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "totalemente confidente"))
 
-        index_case += 1 # incremento l'indice del caso
         survey_cases_A.append(case)
+
+
+        # casi del gruppo B
+        case = []
+
+        index_case += 1 # incremento l'indice del caso
     
 
 
@@ -120,6 +124,8 @@ if __name__ == "__main__":
     
     # creo il file di output output.tsv
     create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output)
+    convert_tsv_to_txt(file_path_output, file_path_output.replace(".tsv", ".txt"), delimiter="\t")
+
 
 
 

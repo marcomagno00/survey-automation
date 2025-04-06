@@ -93,7 +93,7 @@ def write_dataclass_to_tsv(dataclass_obj, filename):
 def add_row_to_tsv(dataclass_obj, filename):
 
     # Open the TSV file in append mode
-    with open(filename, mode='a', newline='') as file:
+    with open(filename, mode='a', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter="\t")
 
         # If the file is empty, write the headers first
@@ -104,6 +104,21 @@ def add_row_to_tsv(dataclass_obj, filename):
         # Write the values of the dataclass instance as a new row
         row = [getattr(dataclass_obj, field.name) for field in fields(dataclass_obj)]
         writer.writerow(row)
+
+def convert_tsv_to_txt(input_path, output_path, delimiter="\t"):
+    try:
+        with open(input_path, 'r', encoding='utf-8', errors='replace') as infile, \
+             open(output_path, 'w', encoding='utf-8') as outfile:
+
+            for line in infile:
+                # Rimuove newline finali e suddivide la riga su tab
+                fields = line.rstrip('\n').split('\t')
+                # Unisce i campi con il delimitatore scelto e scrive su file
+                outfile.write(delimiter.join(fields) + '\n')
+
+        print(f"Conversione completata: '{output_path}'")
+    except Exception as e:
+        print(f"Errore durante la conversione: {e}")
 
 def create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output):
     # settings
