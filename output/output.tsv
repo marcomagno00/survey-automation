@@ -93,3 +93,21 @@ id	related_id	class	type/scale	name	relevance	text	help	language	validation	mand
 		A	0	2				it																																																																																																																																											
 		A	0	3				it																																																																																																																																											
 		A	0	4		totalemente confidente		it																																																																																																																																											
+		G	0	Case1b				it																																																																																																																																											
+		Q	L	HD1	1	"<p>Qual è la risposta corretta?</p><p>img src=""presentazione_caso_1.png""</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>"		it		Y																																																																																																																																									
+		A	0	1		FRESCO		it																																																																																																																																											
+		A	0	0		NON FRESCO		it																																																																																																																																											
+		Q	F	CONF1	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		G	0	Case2b				it																																																																																																																																											
+		Q	L	HD2	1	"<p>Qual è la risposta corretta?</p><p>img src=""presentazione_caso_2.png""</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>"		it		Y																																																																																																																																									
+		A	0	1		FRESCO		it																																																																																																																																											
+		A	0	0		NON FRESCO		it																																																																																																																																											
+		Q	F	CONF2	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											

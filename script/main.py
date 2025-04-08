@@ -37,6 +37,16 @@ if __name__ == "__main__":
     text_presentazione_caso = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_caso))
     text_presentazione_supporto = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_supporto))
 
+    # opzioni iniziali
+    list_opzioni_iniziali = []
+    with open(file_path_opzioni_iniziali + r"/opzioniiniziali.txt", 'r') as file:
+        list_opzioni_iniziali = [linea.strip() for linea in file]
+
+    # opzioni finali
+    list_opzioni_finali = []
+    with open(file_path_opzioni_finali + r"/opzionifinali.txt", 'r') as file:
+        list_opzioni_finali = [linea.strip() for linea in file]
+    
     
     survey_settings = [] # lista di survey_item per definire i settings
     
@@ -77,6 +87,43 @@ if __name__ == "__main__":
         text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
         case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text, mandatory = "Y")) # testo e immagine
         
+
+        # loop per le opzioni (se presenti)
+        for item in list_opzioni_iniziali:
+            # aggiungo le opzioni iniziali
+            case.append(answer(name = item, text = item))
+
+        # answer decisioneiniziale1
+        case.append(answer(name = "1", text = "FRESCO"))
+        # answer decisioneiniziale2
+        case.append(answer(name = "0", text = "NON FRESCO"))
+
+
+        # question "Quanto sei confidente della risposta?"
+        case.append(question(type_and_scale = "F", name = f"CONF{index_case}", text = text_confidenza_iniziale, mandatory = "Y"))
+        # answer 1 "per nulla confidente"
+        case.append(answer(name = "1", text = "per nulla confidente"))
+        # answer 2
+        case.append(answer(name = "2", text = ""))
+        # answer 3
+        case.append(answer(name = "3", text = ""))
+        # answer 4 "totalemente confidente"
+        case.append(answer(name = "4", text = "totalemente confidente"))
+
+        survey_cases_A.append(case)
+
+        #######################################################################################################
+        
+        # casi del gruppo B
+        case = []
+
+        # gruppo
+        case.append(group(type_and_scale = "0", name = f"Case{index_case}b"))
+
+        # question
+        text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
+        case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text, mandatory = "Y")) # testo e immagine
+        
         # answer decisioneiniziale1
         case.append(answer(name = "1", text = "FRESCO"))
         # answer decisioneiniziale2
@@ -94,14 +141,18 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "totalemente confidente"))
 
-        survey_cases_A.append(case)
+        survey_cases_B.append(case)
 
 
-        # casi del gruppo B
-        case = []
+
+
+
+
+
+
 
         index_case += 1 # incremento l'indice del caso
-    
+       
 
 
     # OUTPUT
