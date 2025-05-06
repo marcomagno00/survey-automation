@@ -19,6 +19,7 @@ if __name__ == "__main__":
     # path settings e path output
     file_path_settings = r"template/settings.tsv"
     file_path_output = r"output/output.tsv"
+    images_path_dir = r"output/images/"
     
     # path input
     file_path_input = r"input/"
@@ -29,6 +30,7 @@ if __name__ == "__main__":
     file_path_opzioni_iniziali = r"input/Opzioni Iniziali"
     file_path_opzioni_finali = r"input/Opzioni Finali"
     file_path_presentazione_supporto = r"input/Presentazione Supporto"
+    images_path = r"{SURVEYRESOURCESURL}/images"
 
     # testi (sempre uguali)
     text_advice_1 = read_first_line_from_txt("input/Advice/testoadvice1.txt")
@@ -78,6 +80,8 @@ if __name__ == "__main__":
 
     # rinomino le immagini presenti nella cartella di presentazione caso
     rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
+
+    copy_images_to_folder(file_path_input, images_path_dir)
     
     index_case = 1 # indice per i casi (1, 2, 3...)
     max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
@@ -93,7 +97,9 @@ if __name__ == "__main__":
         case.append(group(type_and_scale = "1", name = f"Case{index_case}a"))
 
         # question
-        text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
+        text =  f'<p>{text_presentazione_caso}</p>'
+        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        #text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
         case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text, mandatory = "Y")) # testo e immagine
         
         # answer decisione iniziale 1 (giusta)
@@ -142,7 +148,18 @@ if __name__ == "__main__":
         case.append(group(type_and_scale = "2", name = f"Case{index_case}b"))
 
         # question
-        text = f'<p>{text_presentazione_supporto}</p><p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p>{text_advice_1}</p><p>img src="immagineadvice1.png"</p><p>{text_spiegazione_advice_1}</p><p>img src="immaginespiegazioneadvice1.png"</p><p>{text_advice_2}</p><p>img src="immagineadvice2.png"</p><p>{text_spiegazione_advice_2}</p><p>img src="immaginespiegazioneadvice2.png"</p><p></p>'
+        text =  f'<p>{text_presentazione_supporto}</p>'
+        text += f'<p>{text_presentazione_caso}</p>'
+        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        text += f'<p>{text_advice_1}</p>'
+        text += f'<img src="{images_path}/immagineadvice1.png"/>'
+        text += f'<p>{text_spiegazione_advice_1}</p>'
+        text += f'<img src="{images_path}/immaginespiegazioneadvice1.png"/>'
+        text += f'<p>{text_advice_2}</p>'
+        text += f'<img src="{images_path}/immagineadvice2.png"/>'
+        text += f'<p>{text_spiegazione_advice_2}</p>'
+        text += f'<img src="{images_path}/immaginespiegazioneadvice2.png"/>'
+
         case.append(question(type_and_scale = "L", name = f"FHD{index_case}", text = text, mandatory = "Y")) # testo e immagine
         
 

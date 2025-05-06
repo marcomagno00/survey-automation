@@ -2,6 +2,7 @@ from dataclasses import dataclass, fields
 from openpyxl import Workbook
 import csv
 import os
+import shutil
 
 # Questo file Python contiene funzioni utilizzate nel main.py:
 # funzioni per la gestione di file, immagini e cartelle
@@ -24,6 +25,25 @@ def rename_images_in_folder(folder_path, base_name):
             print(f"Renamed '{filename}' to '{new_name}'")
     except FileNotFoundError:
         print(f"Folder not found: {folder_path}")
+    except Exception as e:
+        print(f"Error: {e}")
+
+def copy_images_to_folder(source_folder, destination_folder):
+    image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp')
+
+    try:
+        os.makedirs(destination_folder, exist_ok=True)
+        for root, _, files in os.walk(source_folder):
+            for fname in files:
+                if fname.lower().endswith(image_extensions):
+                    dest_path = os.path.join(destination_folder, fname)
+                    if os.path.exists(dest_path):
+                        continue
+
+                    src_path = os.path.join(root, fname)
+                    shutil.copy2(src_path, dest_path)
+    except FileNotFoundError:
+        print(f"Folder not found: {source_folder}")
     except Exception as e:
         print(f"Error: {e}")
 
