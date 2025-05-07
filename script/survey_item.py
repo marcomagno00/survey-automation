@@ -172,7 +172,7 @@ class survey_item:
 # costruttori per ogni sottocategorie di "survey_item" possibili
 
 class group(survey_item):
-    def __init__(self, type_and_scale: str, name: str):
+    def __init__(self, type_and_scale: str, name: str, text: str = ""):
         super().__init__()
         
         self.class_ = "G"

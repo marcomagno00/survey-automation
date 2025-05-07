@@ -27,7 +27,8 @@ if __name__ == "__main__":
     file_path_advice = r"input/Advice"
     file_path_confidenza_iniziale = r"input/Confidenza Iniziale"
     file_path_confidenza_finale = r"input/Confidenza Finale"
-    file_path_opzioni_iniziali = r"input/Opzioni Iniziali"
+    file_path_decisioni_iniziali = r"input/Decisioni Iniziali"
+    file_path_decisioni_finali = r"input/Decisioni Finali"
     file_path_opzioni_finali = r"input/Opzioni Finali"
     file_path_presentazione_supporto = r"input/Presentazione Supporto"
     images_path = r"{SURVEYRESOURCESURL}/images"
@@ -43,17 +44,9 @@ if __name__ == "__main__":
     text_presentazione_caso = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_caso))
     text_presentazione_supporto = read_first_line_from_txt(give_first_txt_from_folder(file_path_presentazione_supporto))
 
-
-    # opzioni iniziali
-    list_opzioni_iniziali = []
-    with open(file_path_opzioni_iniziali + r"/opzioniiniziali.txt", 'r') as file:
-        list_opzioni_iniziali = [linea.strip() for linea in file]
-
-    # opzioni finali
-    list_opzioni_finali = []
-    with open(file_path_opzioni_finali + r"/opzionifinali.txt", 'r') as file:
-        list_opzioni_finali = [linea.strip() for linea in file]
-    
+    list_decisioni_iniziali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_decisioni_iniziali))
+    list_decisioni_finali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_decisioni_finali))
+    list_opzioni_finali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_opzioni_finali))
 
     # SETTINGS 
     
@@ -86,6 +79,114 @@ if __name__ == "__main__":
     survey_cases_A = [] # lista di "survey_item" che contiene i casi del gruppo A
     survey_cases_B = [] # lista di "survey_item" che contiene i casi del gruppo B (casi con AI)
     
+    while (index_case <= max_index_case):
+        
+        a_index = index_case * 2 - 1
+        b_index = index_case * 2
+
+        ## CASE A
+        case = []
+
+        # group
+        case.append(group(type_and_scale = a_index, name = f"Case{index_case}a", text = text_presentazione_caso))
+        
+        # question
+        text =  f'<p>{text_presentazione_caso}</p>'
+        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        case.append(question(type_and_scale = "L", name = f"HD{a_index}", text = text, mandatory = "Y"))
+        
+        # first answer (correct)
+        first_answer = list_decisioni_iniziali[0]
+        case.append(answer(name = "1", text = first_answer))
+
+        # remaining answers (wrong)
+        remaining_answers = list_decisioni_iniziali[1:]
+        for option in remaining_answers:
+            case.append(answer(name = "0", text = option)) 
+
+        # question confidenza iniziale 1 "Quanto sei confidente della risposta?"
+        case.append(question(type_and_scale = "F", name = f"CONF{a_index}", text = text_confidenza_iniziale, mandatory = "Y"))
+        
+        # subquestion confidenza iniziale
+        case.append(sub_question(type_and_scale = "",name = "CONFI", text = "Confidenza", mandatory="N"))
+        
+        # answer 1 "per nulla confidente"
+        case.append(answer(name = "1", text = "(Per nulla confidente)"))
+        # answer 2
+        case.append(answer(name = "2", text = "(Poco confidente)"))
+        # answer 3
+        case.append(answer(name = "3", text = "(Abbastanza confidente)"))
+        # answer 4 "totalemente confidente"
+        case.append(answer(name = "4", text = "(Totalemente confidente)"))
+        
+        survey_cases_A.append(case)
+
+        ## CASE B
+        case = []
+
+        # group
+        case.append(group(type_and_scale = b_index, name = f"Case{index_case}b", text = text_presentazione_caso))
+
+        # question
+        text =  f'<p>{text_presentazione_supporto}</p>'
+        text += f'<p>{text_presentazione_caso}</p>'
+        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        text += f'<p>{text_advice_1}</p>'
+        text += f'<img src="{images_path}/immagineadvice1.png"/>'
+        text += f'<p>{text_spiegazione_advice_1}</p>'
+        text += f'<img src="{images_path}/immaginespiegazioneadvice1.png"/>'
+        text += f'<p>{text_advice_2}</p>'
+        text += f'<img src="{images_path}/immagineadvice2.png"/>'
+        text += f'<p>{text_spiegazione_advice_2}</p>'
+        text += f'<img src="{images_path}/immaginespiegazioneadvice2.png"/>'
+        case.append(question(type_and_scale = "L", name = f"FHD{b_index}", text = text, mandatory = "Y"))
+        
+        # first answer (correct)
+        first_answer = list_decisioni_iniziali[0]
+        case.append(answer(name = "1", text = first_answer))
+
+        # remaining answers (wrong)
+        remaining_answers = list_decisioni_iniziali[1:]
+        for option in remaining_answers:
+            case.append(answer(name = "0", text = option)) 
+
+        # question confidenza iniziale 1 "Quanto sei confidente della risposta?"
+        case.append(question(type_and_scale = "F", name = f"CONF{b_index}", text = text_confidenza_iniziale, mandatory = "Y"))
+        
+        # subquestion confidenza iniziale
+        case.append(sub_question(type_and_scale = "",name = "CONFI", text = "Confidenza", mandatory="N"))
+        
+        # answer 1 "per nulla confidente"
+        case.append(answer(name = "1", text = "(Per nulla confidente)"))
+        # answer 2
+        case.append(answer(name = "2", text = "(Poco confidente)"))
+        # answer 3
+        case.append(answer(name = "3", text = "(Abbastanza confidente)"))
+        # answer 4 "totalemente confidente"
+        case.append(answer(name = "4", text = "(Totalemente confidente)"))
+
+        # question opzione finale
+        text = ""
+        for option in list_opzioni_finali:
+            text += f"<p>{option}</p>"
+        case.append(question(name = f"Q{b_index:03}", type_and_scale = "F", text = text, mandatory = "N"))
+
+        # subquestion opzione finale
+        for i, option in enumerate(list_opzioni_finali, 1):
+            case.append(sub_question(type_and_scale="", name = f"OPTF{i}", text = option, mandatory = "N"))
+
+        # answer
+        case.append(answer(name = f'AO01',text = "Per niente"))
+        case.append(answer(name = f'AO02',text = "Poco"))
+        case.append(answer(name = f'AO03',text = "Abbastanza"))
+        case.append(answer(name = f'AO04',text = "Totalmente"))
+
+        survey_cases_B.append(case)
+        index_case += 1
+
+
+
+    """
     while (index_case <= max_index_case): # finchè ci sono immagini per la presentazione caso
         
         # GRUPPO A
@@ -120,11 +221,11 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "(Totalemente confidente)"))
 
-        # opzione iniziale 1
-        text = f'<p>{list_opzioni_iniziali[0]}</p><p>{list_opzioni_iniziali[1]}</p><p>{list_opzioni_iniziali[2]}</p>'
+        # decisione iniziale 1
+        text = f'<p>{list_decisioni_iniziali[0]}</p><p>{list_decisioni_iniziali[1]}</p><p>{list_decisioni_iniziali[2]}</p>'
         case.append(question(type_and_scale = "F", name = f"option{index_case}", text = text, mandatory = "Y"))
 
-        # subquestion opzione iniziale
+        # subquestion decisione iniziale
         case.append(sub_question(type_and_scale = "", name = "OPTI1", text = "option1", mandatory="N"))
         case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option2", mandatory="N"))
         case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option3", mandatory="N"))
@@ -182,11 +283,11 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "totalemente confidente"))
 
-        # question opzione finale
+        # question decisione finale
         text = f"<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice="" presentazione=""></testo></p>"
         case.append(question(name = f"Q{index_case:03}", type_and_scale = "F", text = text, mandatory = "N"))
 
-        # subquestion opzione finale
+        # subquestion decisione finale
         case.append(sub_question(type_and_scale="", name="OPTF1", text="option1", mandatory = "N"))
         case.append(sub_question(type_and_scale="", name="OPTF2", text="option2", mandatory = "N"))
         case.append(sub_question(type_and_scale="", name="OPTF3", text="option3", mandatory = "N"))
@@ -209,6 +310,8 @@ if __name__ == "__main__":
 
 
         index_case += 1 # incremento l'indice del caso
+
+    """
        
 
 
@@ -223,8 +326,8 @@ if __name__ == "__main__":
     print(r"lunghezza di survey_cases_A:", len(survey_cases_A))
     print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
     print()
-    print(list_opzioni_iniziali)
-    print(list_opzioni_finali)
+    print(list_decisioni_iniziali)
+    print(list_decisioni_finali)
     print()
     
 

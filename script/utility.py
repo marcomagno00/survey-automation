@@ -76,6 +76,19 @@ def read_first_line_from_txt(file_path):
         first_line = file.readline().strip()
     return first_line
 
+
+def read_all_lines_from_txt(file_path):
+    lines = []
+    if file_path is None:
+        return None
+    # Open the file and read the first line
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file.readlines():
+            line = line.strip()
+            if line != "":
+                lines.append(line)
+    return lines
+
 def write_dataclass_to_excel(dataclass_obj, filename):
     
     # Create a new workbook and get the active worksheet
