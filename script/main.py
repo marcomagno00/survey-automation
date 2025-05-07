@@ -62,7 +62,7 @@ if __name__ == "__main__":
     # leggo dal file settings.tsv e scrivo i dati nella lista survey_settings
     with open(file_path_settings, "r") as file:
         reader = csv.reader(file, delimiter="\t")
-        next(reader, None) # skippa la prima riga
+        next(reader, None) # salta la prima riga
         for row in reader:
             item = survey_item()
             item.class_ = row[0]
@@ -80,8 +80,6 @@ if __name__ == "__main__":
 
     # rinomino le immagini presenti nella cartella di presentazione caso
     rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
-
-    copy_images_to_folder(file_path_input, images_path_dir)
     
     index_case = 1 # indice per i casi (1, 2, 3...)
     max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
@@ -127,15 +125,15 @@ if __name__ == "__main__":
         case.append(question(type_and_scale = "F", name = f"option{index_case}", text = text, mandatory = "Y"))
 
         # subquestion opzione iniziale
-        case.append(sub_question(type_and_scale = "",name = "OPTI1", text = "option1", mandatory="N"))
-        case.append(sub_question(type_and_scale = "",name = "OPTI3", text = "option2", mandatory="N"))
-        case.append(sub_question(type_and_scale = "",name = "OPTI3", text = "option3", mandatory="N"))
+        case.append(sub_question(type_and_scale = "", name = "OPTI1", text = "option1", mandatory="N"))
+        case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option2", mandatory="N"))
+        case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option3", mandatory="N"))
 
         # answer
-        case.append(answer(name = f'AO01',text = "Per niente"))
-        case.append(answer(name = f'AO02',text = ""))
-        case.append(answer(name = f'AO03',text = ""))
-        case.append(answer(name = f'AO04',text = "Totalmente"))
+        case.append(answer(name = f'AO01', text = "Per niente"))
+        case.append(answer(name = f'AO02', text = ""))
+        case.append(answer(name = f'AO03', text = ""))
+        case.append(answer(name = f'AO04', text = "Totalmente"))
 
         survey_cases_A.append(case)
 
@@ -225,13 +223,21 @@ if __name__ == "__main__":
     print(r"lunghezza di survey_cases_A:", len(survey_cases_A))
     print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
     print()
+    print(list_opzioni_iniziali)
+    print(list_opzioni_finali)
+    print()
     
+
+    # copio tutte le immagini nella cartella "images" in output
+    copy_images_to_folder(file_path_input, images_path_dir)
+
     # svuoto output.tsv se esiste già
     with open(file_path_output, "w", encoding="utf-8") as f:
         pass
     
     # creo il file di output output.tsv
     create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output)
+    # creo il file di output output.txt
     convert_tsv_to_txt(file_path_output, file_path_output.replace(".tsv", ".txt"), delimiter="\t")
 
 

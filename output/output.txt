@@ -76,7 +76,7 @@ id	related_id	class	type/scale	name	relevance	text	help	language	validation	mand
 		SL		surveyls_url				it																																																																																																																																											
 		SL		surveyls_urldescription				it																																																																																																																																											
 		G	1	Case1a				it																																																																																																																																											
-		Q	L	HD1	1	"<p>Qual è la risposta corretta?</p><p>img src=""presentazione_caso_1.png""</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>"		it		Y																																																																																																																																									
+		Q	L	HD1	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_1.png""/>"		it		Y																																																																																																																																									
 		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
 		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
 		Q	F	CONF1	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
@@ -93,8 +93,98 @@ id	related_id	class	type/scale	name	relevance	text	help	language	validation	mand
 		A	0	AO02				it																																																																																																																																											
 		A	0	AO03				it																																																																																																																																											
 		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	1	Case2a				it																																																																																																																																											
+		Q	L	HD2	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
+		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
+		Q	F	CONF2	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	option2	1	<p>A</p><p>B</p><p>C</p>		it		Y																																																																																																																																									
+		SQ		OPTI1	1	option1		it		N																																																																																																																																									
+		SQ		OPTI3	1	option2		it		N																																																																																																																																									
+		SQ		OPTI3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	1	Case3a				it																																																																																																																																											
+		Q	L	HD3	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_3.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
+		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
+		Q	F	CONF3	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	option3	1	<p>A</p><p>B</p><p>C</p>		it		Y																																																																																																																																									
+		SQ		OPTI1	1	option1		it		N																																																																																																																																									
+		SQ		OPTI3	1	option2		it		N																																																																																																																																									
+		SQ		OPTI3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	1	Case4a				it																																																																																																																																											
+		Q	L	HD4	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_4.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
+		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
+		Q	F	CONF4	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	option4	1	<p>A</p><p>B</p><p>C</p>		it		Y																																																																																																																																									
+		SQ		OPTI1	1	option1		it		N																																																																																																																																									
+		SQ		OPTI3	1	option2		it		N																																																																																																																																									
+		SQ		OPTI3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	1	Case5a				it																																																																																																																																											
+		Q	L	HD5	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_5.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
+		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
+		Q	F	CONF5	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	option5	1	<p>A</p><p>B</p><p>C</p>		it		Y																																																																																																																																									
+		SQ		OPTI1	1	option1		it		N																																																																																																																																									
+		SQ		OPTI3	1	option2		it		N																																																																																																																																									
+		SQ		OPTI3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	1	Case6a				it																																																																																																																																											
+		Q	L	HD6	1	"<p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_6.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisioneiniziale1>		it																																																																																																																																											
+		A	0	0		<decisioneiniziale0>		it																																																																																																																																											
+		Q	F	CONF6	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	option6	1	<p>A</p><p>B</p><p>C</p>		it		Y																																																																																																																																									
+		SQ		OPTI1	1	option1		it		N																																																																																																																																									
+		SQ		OPTI3	1	option2		it		N																																																																																																																																									
+		SQ		OPTI3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
 		G	2	Case1b				it																																																																																																																																											
-		Q	L	FHD1	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><p>img src=""presentazione_caso_1.png""</p><p>Secondo il supporto AI la risposta corretta è:</p><p>img src=""immagineadvice1.png""</p><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><p>img src=""immaginespiegazioneadvice1.png""</p><p>Secondo la Ai la risposta è:</p><p>img src=""immagineadvice2.png""</p><p>La risposta è [...] perchè [...]</p><p>img src=""immaginespiegazioneadvice2.png""</p><p></p>"		it		Y																																																																																																																																									
+		Q	L	FHD1	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_1.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
 		A	0	1		<decisionefinale1>		it																																																																																																																																											
 		A	0	0		<decisionefinale0>		it																																																																																																																																											
 		Q	F	FCONF1	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
@@ -104,6 +194,96 @@ id	related_id	class	type/scale	name	relevance	text	help	language	validation	mand
 		A	0	3				it																																																																																																																																											
 		A	0	4		totalemente confidente		it																																																																																																																																											
 		Q	F	Q001	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	option1		it		N																																																																																																																																									
+		SQ		OPTF2	1	option2		it		N																																																																																																																																									
+		SQ		OPTF3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	2	Case2b				it																																																																																																																																											
+		Q	L	FHD2	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_2.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisionefinale1>		it																																																																																																																																											
+		A	0	0		<decisionefinale0>		it																																																																																																																																											
+		Q	F	FCONF2	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
+		SQ		CONFF	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		Q	F	Q002	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	option1		it		N																																																																																																																																									
+		SQ		OPTF2	1	option2		it		N																																																																																																																																									
+		SQ		OPTF3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	2	Case3b				it																																																																																																																																											
+		Q	L	FHD3	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_3.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisionefinale1>		it																																																																																																																																											
+		A	0	0		<decisionefinale0>		it																																																																																																																																											
+		Q	F	FCONF3	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
+		SQ		CONFF	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		Q	F	Q003	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	option1		it		N																																																																																																																																									
+		SQ		OPTF2	1	option2		it		N																																																																																																																																									
+		SQ		OPTF3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	2	Case4b				it																																																																																																																																											
+		Q	L	FHD4	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_4.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisionefinale1>		it																																																																																																																																											
+		A	0	0		<decisionefinale0>		it																																																																																																																																											
+		Q	F	FCONF4	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
+		SQ		CONFF	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		Q	F	Q004	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	option1		it		N																																																																																																																																									
+		SQ		OPTF2	1	option2		it		N																																																																																																																																									
+		SQ		OPTF3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	2	Case5b				it																																																																																																																																											
+		Q	L	FHD5	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_5.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisionefinale1>		it																																																																																																																																											
+		A	0	0		<decisionefinale0>		it																																																																																																																																											
+		Q	F	FCONF5	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
+		SQ		CONFF	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		Q	F	Q005	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	option1		it		N																																																																																																																																									
+		SQ		OPTF2	1	option2		it		N																																																																																																																																									
+		SQ		OPTF3	1	option3		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02				it																																																																																																																																											
+		A	0	AO03				it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	2	Case6b				it																																																																																																																																											
+		Q	L	FHD6	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><img src=""{SURVEYRESOURCESURL}/images/presentazione_caso_6.png""/><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		<decisionefinale1>		it																																																																																																																																											
+		A	0	0		<decisionefinale0>		it																																																																																																																																											
+		Q	F	FCONF6	1	Dopo aver ricevuto questa spiegazione, qual è la sua risposta definitiva?<testo valutazioni=></testo>		it		Y																																																																																																																																									
+		SQ		CONFF	1	<confidenza>		it		N																																																																																																																																									
+		A	0	1		per nulla confidente		it																																																																																																																																											
+		A	0	2				it																																																																																																																																											
+		A	0	3				it																																																																																																																																											
+		A	0	4		totalemente confidente		it																																																																																																																																											
+		Q	F	Q006	1	<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice= presentazione=></testo></p>		it		N																																																																																																																																									
 		SQ		OPTF1	1	option1		it		N																																																																																																																																									
 		SQ		OPTF2	1	option2		it		N																																																																																																																																									
 		SQ		OPTF3	1	option3		it		N																																																																																																																																									
