@@ -74,13 +74,14 @@ if __name__ == "__main__":
     # rinomino le immagini presenti nella cartella di presentazione caso
     rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
     
-    index_case = 1 # indice per i casi (1, 2, 3...)
+    index_case = 1 # indice per contare e visualizzare i casi (1, 2, 3...)
     max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
-    survey_cases_A = [] # lista di "survey_item" che contiene i casi del gruppo A
-    survey_cases_B = [] # lista di "survey_item" che contiene i casi del gruppo B (casi con AI)
+    survey_cases = [] # lista di "survey_item" che contiene i casi A e B
+    
     
     while (index_case <= max_index_case):
         
+        # indici specifici per tracciare i gruppi (per la parte di logica)
         a_index = index_case * 2 - 1
         b_index = index_case * 2
 
@@ -119,7 +120,7 @@ if __name__ == "__main__":
         # answer 4 "totalemente confidente"
         case.append(answer(name = "4", text = "(Totalemente confidente)"))
         
-        survey_cases_A.append(case)
+        survey_cases.append(case)
 
         ## CASE B
         case = []
@@ -141,11 +142,11 @@ if __name__ == "__main__":
         text += f'<img src="{images_path}/immaginespiegazioneadvice2.png"/>'
         case.append(question(type_and_scale = "L", name = f"FHD{b_index}", text = text, mandatory = "Y"))
         
-        # first answer (correct)
+        # prima risposta (corretta)
         first_answer = list_decisioni_iniziali[0]
         case.append(answer(name = "1", text = first_answer))
 
-        # remaining answers (wrong)
+        # risposte rimanenti (sbagliata) (in questo caso sono solo 2)
         remaining_answers = list_decisioni_iniziali[1:]
         for option in remaining_answers:
             case.append(answer(name = "0", text = option)) 
@@ -181,138 +182,9 @@ if __name__ == "__main__":
         case.append(answer(name = f'AO03',text = "Abbastanza"))
         case.append(answer(name = f'AO04',text = "Totalmente"))
 
-        survey_cases_B.append(case)
+        survey_cases.append(case)
         index_case += 1
 
-
-
-    """
-    while (index_case <= max_index_case): # finchè ci sono immagini per la presentazione caso
-        
-        # GRUPPO A
-        case = [] # singolo caso
-
-        # gruppo
-        case.append(group(type_and_scale = "1", name = f"Case{index_case}a"))
-
-        # question
-        text =  f'<p>{text_presentazione_caso}</p>'
-        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
-        #text = f'<p>{text_presentazione_caso}</p><p>img src="presentazione_caso_{index_case}.png"</p><p><testopresentazionecaso></testopresentazionecaso></p><p><immaginepresentazionecaso></immaginepresentazionecaso></p>'
-        case.append(question(type_and_scale = "L", name = f"HD{index_case}", text = text, mandatory = "Y")) # testo e immagine
-        
-        # answer decisione iniziale 1 (giusta)
-        case.append(answer(name = "1", text = "<decisioneiniziale1>"))
-        # answer decisione iniziale 0 (sbagliata)
-        case.append(answer(name = "0", text = "<decisioneiniziale0>"))
-
-        # question confidenza iniziale 1 "Quanto sei confidente della risposta?"
-        case.append(question(type_and_scale = "F", name = f"CONF{index_case}", text = text_confidenza_iniziale, mandatory = "Y"))
-        
-        # subquestion confidenza iniziale
-        case.append(sub_question(type_and_scale = "",name = "CONFI", text = "<confidenza>", mandatory="N"))
-        
-        # answer 1 "per nulla confidente"
-        case.append(answer(name = "1", text = "(Per nulla confidente)"))
-        # answer 2
-        case.append(answer(name = "2", text = ""))
-        # answer 3
-        case.append(answer(name = "3", text = ""))
-        # answer 4 "totalemente confidente"
-        case.append(answer(name = "4", text = "(Totalemente confidente)"))
-
-        # decisione iniziale 1
-        text = f'<p>{list_decisioni_iniziali[0]}</p><p>{list_decisioni_iniziali[1]}</p><p>{list_decisioni_iniziali[2]}</p>'
-        case.append(question(type_and_scale = "F", name = f"option{index_case}", text = text, mandatory = "Y"))
-
-        # subquestion decisione iniziale
-        case.append(sub_question(type_and_scale = "", name = "OPTI1", text = "option1", mandatory="N"))
-        case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option2", mandatory="N"))
-        case.append(sub_question(type_and_scale = "", name = "OPTI3", text = "option3", mandatory="N"))
-
-        # answer
-        case.append(answer(name = f'AO01', text = "Per niente"))
-        case.append(answer(name = f'AO02', text = ""))
-        case.append(answer(name = f'AO03', text = ""))
-        case.append(answer(name = f'AO04', text = "Totalmente"))
-
-        survey_cases_A.append(case)
-
-        #######################################################################################################
-        
-        # GRUPPO B (con AI)
-        case = []
-
-        # gruppo
-        case.append(group(type_and_scale = "2", name = f"Case{index_case}b"))
-
-        # question
-        text =  f'<p>{text_presentazione_supporto}</p>'
-        text += f'<p>{text_presentazione_caso}</p>'
-        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
-        text += f'<p>{text_advice_1}</p>'
-        text += f'<img src="{images_path}/immagineadvice1.png"/>'
-        text += f'<p>{text_spiegazione_advice_1}</p>'
-        text += f'<img src="{images_path}/immaginespiegazioneadvice1.png"/>'
-        text += f'<p>{text_advice_2}</p>'
-        text += f'<img src="{images_path}/immagineadvice2.png"/>'
-        text += f'<p>{text_spiegazione_advice_2}</p>'
-        text += f'<img src="{images_path}/immaginespiegazioneadvice2.png"/>'
-
-        case.append(question(type_and_scale = "L", name = f"FHD{index_case}", text = text, mandatory = "Y")) # testo e immagine
-        
-
-        # answer decisione iniziale 1 (giusta)
-        case.append(answer(name = "1", text = "<decisionefinale1>"))
-        # answer decisione iniziale 0 (sbagliata)
-        case.append(answer(name = "0", text = "<decisionefinale0>"))
-
-        # question confidenza finale
-        case.append(question(name = f"FCONF{index_case}", type_and_scale="F", text=f"{text_confidenza_finale}<testo valutazioni=""></testo>", mandatory="Y"))
-        
-        # sub_question confidenza finale
-        case.append(sub_question(type_and_scale="", name="CONFF", text="<confidenza>", mandatory = "N"))
-        
-        
-        # answer 1 "per nulla confidente"
-        case.append(answer(name = "1", text = "per nulla confidente"))
-        # answer 2
-        case.append(answer(name = "2", text = ""))
-        # answer 3
-        case.append(answer(name = "3", text = ""))
-        # answer 4 "totalemente confidente"
-        case.append(answer(name = "4", text = "totalemente confidente"))
-
-        # question decisione finale
-        text = f"<p>[optionfinale1]</p><p>[optionfinale2]</p><p>[optionfinale3]</p><p><testo advice="" presentazione=""></testo></p>"
-        case.append(question(name = f"Q{index_case:03}", type_and_scale = "F", text = text, mandatory = "N"))
-
-        # subquestion decisione finale
-        case.append(sub_question(type_and_scale="", name="OPTF1", text="option1", mandatory = "N"))
-        case.append(sub_question(type_and_scale="", name="OPTF2", text="option2", mandatory = "N"))
-        case.append(sub_question(type_and_scale="", name="OPTF3", text="option3", mandatory = "N"))
-
-        # answer
-        case.append(answer(name = f'AO01',text = "Per niente"))
-        case.append(answer(name = f'AO02',text = ""))
-        case.append(answer(name = f'AO03',text = ""))
-        case.append(answer(name = f'AO04',text = "Totalmente"))
-
-
-        survey_cases_B.append(case)
-
-
-
-
-
-
-
-
-
-        index_case += 1 # incremento l'indice del caso
-
-    """
-       
 
 
     # OUTPUT
@@ -323,15 +195,22 @@ if __name__ == "__main__":
     print(r"testo presentazione supporto:", text_presentazione_supporto)
     print(r"testo confidenza iniziale:", text_confidenza_iniziale)
     print(r"testo confidenza finale:", text_confidenza_finale)
-    print(r"lunghezza di survey_cases_A:", len(survey_cases_A))
-    print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
+    print(r"testo advice 1:", text_advice_1)
+    print(r"testo advice 2:", text_advice_2)
+    print(r"testo spiegazione advice 1:", text_spiegazione_advice_1)
+    print(r"testo spiegazione advice 2:", text_spiegazione_advice_2)
+
     print()
-    print(list_decisioni_iniziali)
-    print(list_decisioni_finali)
+
+    print(r"numeri di casi (A e B):", len(survey_cases))
+    print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
+
+    print(r"risposte iniziali:", list_decisioni_iniziali)
+    print(r"risposte finali:", list_decisioni_finali)
     print()
     
 
-    # copio tutte le immagini nella cartella "images" in output
+    # copio tutte le immagini nella cartella "images" in output, per poter uploadarle su Limesurvey più comodamente
     copy_images_to_folder(file_path_input, images_path_dir)
 
     # svuoto output.tsv se esiste già
@@ -339,7 +218,7 @@ if __name__ == "__main__":
         pass
     
     # creo il file di output output.tsv
-    create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output)
+    create_survey(survey_settings, survey_cases, file_path_output)
     # creo il file di output output.txt
     convert_tsv_to_txt(file_path_output, file_path_output.replace(".tsv", ".txt"), delimiter="\t")
 

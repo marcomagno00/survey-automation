@@ -153,17 +153,14 @@ def convert_tsv_to_txt(input_path, output_path, delimiter="\t"):
     except Exception as e:
         print(f"Errore durante la conversione: {e}")
 
-def create_survey(survey_settings, survey_cases_A, survey_cases_B, file_path_output):
+def create_survey(survey_settings, survey_cases, file_path_output):
     # settings
     for item in survey_settings:
         add_row_to_tsv(item, file_path_output)
-    
-    # survey
-    # cases A
-    for case in survey_cases_A:
+
+    # cases 
+    for case in survey_cases:
        for group_ in case:
             add_row_to_tsv(group_, file_path_output)
-    # cases B
-    for case in survey_cases_B:
-       for group_ in case:
-            add_row_to_tsv(group_, file_path_output)
+
+    print(f"File creato: '{file_path_output}'")
