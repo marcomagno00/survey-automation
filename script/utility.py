@@ -3,6 +3,7 @@ from openpyxl import Workbook
 import csv
 import os
 import shutil
+import random
 
 # Questo file Python contiene funzioni utilizzate nel main.py:
 # funzioni per la gestione di file, immagini e cartelle
@@ -10,7 +11,7 @@ import shutil
 
 
 def rename_images_in_folder(folder_path, base_name):
-    image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp')
+    image_extensions = ('.jpg', '.jpeg', '.png')
     
     try:
         files = sorted(os.listdir(folder_path))
@@ -58,7 +59,51 @@ def count_images_in_folder(folder_path):
     except FileNotFoundError:
         print(f"Folder not found: {folder_path}")
         return 0
-    
+
+def get_images_from_folder(folder_path):
+    # Estensioni tipiche delle immagini
+    image_extensions = ('.jpg', '.jpeg', '.png')
+
+    # Lista per contenere i nomi delle immagini
+    image_names = []
+
+    # Controlla se la cartella esiste
+    if not os.path.isdir(folder_path):
+        raise ValueError(f"La cartella '{folder_path}' non esiste.")
+
+    # Itera attraverso i file nella cartella
+    for filename in os.listdir(folder_path):
+        if filename.lower().endswith(image_extensions):
+            image_names.append(filename)
+
+    return image_names
+
+def unify_and_randomize_images(cartella_corrette, cartella_sbagliate, output_tsv):
+    # Recupera i path delle immagini
+    immagini_corrette = [
+        os.path.join(cartella_corrette, f) for f in os.listdir(cartella_corrette)
+        if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp'))
+    ]
+    immagini_sbagliate = [
+        os.path.join(cartella_sbagliate, f) for f in os.listdir(cartella_sbagliate)
+        if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp'))
+    ]
+
+    # Associa etichetta 1 a corrette e 0 a sbagliate
+    dati = [(path, 1) for path in immagini_corrette] + [(path, 0) for path in immagini_sbagliate]
+
+    # Mescola i dati
+    random.shuffle(dati)
+
+    # Scrivi in un file TSV
+    with open(output_tsv, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f, delimiter='\t')
+        writer.writerow(['path', 'label'])  # intestazione
+        for path, label in dati:
+            writer.writerow([path, label])
+
+    print(f"File TSV creato con successo: {output_tsv}")
+
 def give_first_txt_from_folder(folder_path):
     # Get the first file from the folder
     for file_name in os.listdir(folder_path):
@@ -75,7 +120,6 @@ def read_first_line_from_txt(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         first_line = file.readline().strip()
     return first_line
-
 
 def read_all_lines_from_txt(file_path):
     lines = []

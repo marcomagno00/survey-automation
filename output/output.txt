@@ -243,3 +243,59 @@ id	related_id	class	type/scale	name	relevance	text	help	language	validation	mand
 		A	0	AO02		Poco		it																																																																																																																																											
 		A	0	AO03		Abbastanza		it																																																																																																																																											
 		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	13	Case7a				it																																																																																																																																											
+		Q	L	HD13	1	<p>Qual è la risposta corretta?</p>		it		Y																																																																																																																																									
+		A	0	1		A		it																																																																																																																																											
+		A	0	0		B		it																																																																																																																																											
+		Q	F	CONF13	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	Confidenza		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2		(Poco confidente)		it																																																																																																																																											
+		A	0	3		(Abbastanza confidente)		it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		G	14	Case7b				it																																																																																																																																											
+		Q	L	FHD14	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		A		it																																																																																																																																											
+		A	0	0		B		it																																																																																																																																											
+		Q	F	CONF14	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	Confidenza		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2		(Poco confidente)		it																																																																																																																																											
+		A	0	3		(Abbastanza confidente)		it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	Q014	1	<p>Opzione A</p><p>Opzione B</p><p>Opzione C</p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	Opzione A		it		N																																																																																																																																									
+		SQ		OPTF2	1	Opzione B		it		N																																																																																																																																									
+		SQ		OPTF3	1	Opzione C		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02		Poco		it																																																																																																																																											
+		A	0	AO03		Abbastanza		it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											
+		G	15	Case8a				it																																																																																																																																											
+		Q	L	HD15	1	<p>Qual è la risposta corretta?</p>		it		Y																																																																																																																																									
+		A	0	1		A		it																																																																																																																																											
+		A	0	0		B		it																																																																																																																																											
+		Q	F	CONF15	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	Confidenza		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2		(Poco confidente)		it																																																																																																																																											
+		A	0	3		(Abbastanza confidente)		it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		G	16	Case8b				it																																																																																																																																											
+		Q	L	FHD16	1	"<p>Il supporto AI ti darà suggerimenti per rispondere alle domande</p><p>Qual è la risposta corretta?</p><p>Secondo il supporto AI la risposta corretta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice1.png""/><p>Secondo il supporto AI la risposta corretta è l'altra perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice1.png""/><p>Secondo la Ai la risposta è:</p><img src=""{SURVEYRESOURCESURL}/images/immagineadvice2.png""/><p>La risposta è [...] perchè [...]</p><img src=""{SURVEYRESOURCESURL}/images/immaginespiegazioneadvice2.png""/>"		it		Y																																																																																																																																									
+		A	0	1		A		it																																																																																																																																											
+		A	0	0		B		it																																																																																																																																											
+		Q	F	CONF16	1	"Relativamente alla sua risposta, valuti quanto è sicur* di questa in una scala da ""Per nulla sicur*"" a ""Totalmente sicur*"""		it		Y																																																																																																																																									
+		SQ		CONFI	1	Confidenza		it		N																																																																																																																																									
+		A	0	1		(Per nulla confidente)		it																																																																																																																																											
+		A	0	2		(Poco confidente)		it																																																																																																																																											
+		A	0	3		(Abbastanza confidente)		it																																																																																																																																											
+		A	0	4		(Totalemente confidente)		it																																																																																																																																											
+		Q	F	Q016	1	<p>Opzione A</p><p>Opzione B</p><p>Opzione C</p>		it		N																																																																																																																																									
+		SQ		OPTF1	1	Opzione A		it		N																																																																																																																																									
+		SQ		OPTF2	1	Opzione B		it		N																																																																																																																																									
+		SQ		OPTF3	1	Opzione C		it		N																																																																																																																																									
+		A	0	AO01		Per niente		it																																																																																																																																											
+		A	0	AO02		Poco		it																																																																																																																																											
+		A	0	AO03		Abbastanza		it																																																																																																																																											
+		A	0	AO04		Totalmente		it																																																																																																																																											

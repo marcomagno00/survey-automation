@@ -21,7 +21,7 @@ if __name__ == "__main__":
     file_path_output = r"output/output.tsv"
     images_path_dir = r"output/images/"
     
-    # path input
+    # dir path input
     file_path_input = r"input/"
     file_path_presentazione_caso = r"input/Presentazione Caso"
     file_path_advice = r"input/Advice"
@@ -31,9 +31,11 @@ if __name__ == "__main__":
     file_path_decisioni_finali = r"input/Decisioni Finali"
     file_path_opzioni_finali = r"input/Opzioni Finali"
     file_path_presentazione_supporto = r"input/Presentazione Supporto"
+
+    # path immagini per l'upload su Limesurvey
     images_path = r"{SURVEYRESOURCESURL}/images"
 
-    # testi (sempre uguali)
+    # testi di input
     text_advice_1 = read_first_line_from_txt("input/Advice/testoadvice1.txt")
     text_advice_2 = read_first_line_from_txt("input/Advice/testoadvice2.txt")
     text_spiegazione_advice_1 = read_first_line_from_txt("input/Advice/spiegazioneadvice1.txt")
@@ -47,6 +49,8 @@ if __name__ == "__main__":
     list_decisioni_iniziali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_decisioni_iniziali))
     list_decisioni_finali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_decisioni_finali))
     list_opzioni_finali = read_all_lines_from_txt(give_first_txt_from_folder(file_path_opzioni_finali))
+
+
 
     # SETTINGS 
     
@@ -64,26 +68,67 @@ if __name__ == "__main__":
             item.language = row[6]
             survey_settings.append(item)
 
+    # NUMERO DI CASI
+
+    # conto le immagini nella cartella di Presentazione Caso (e le rinomino)
+    # chiedo quanti casi voglio generare
+    # li confronto con il numero di immagini presenti nella cartella di Presentazione Caso
+    # se:
+    # num_immagini_presentazione_caso <= max_index_case -> prendo in ordine tutte le immagini disponibili e i casi rimanenti non avranno l'immagine
+    # num_immagini_presentazione_caso > max_index_case -> prendo le immagini in ordine
+    
+    print()
+    print(r"** NUMERO DI CASI **")
+    
+    # chiedo quanti casi voglio generare
+    while True:
+        try:
+            max_index_case = int(input("Inserisci il numero di casi che vuoi generare (un gruppo): "))
+            break  # Uscita dal ciclo se l'input è valido
+        except ValueError:
+            print("Devi inserire un numero intero di casi")
+
+
+    # IMMAGINI PRESENTAZIONE CASO
+
+    num_immagini_presentazione_caso = count_images_in_folder(file_path_presentazione_caso)
+    list_immagini_presentazione_caso = get_images_from_folder(file_path_presentazione_caso)
+    print(list_immagini_presentazione_caso)
+    
+    print()
+    print(r"** IMMAGINI PRESENTAZIONE CASO **")
+    
+    if num_immagini_presentazione_caso == 0:
+        # se non ci sono immagini nella cartella di presentazione caso
+        print("Nessuna immagine trovata nella cartella di presentazione caso.")
+        
+    else:
+        # rinomino le immagini presenti nella cartella di presentazione caso
+        print(f"Rinomino le {num_immagini_presentazione_caso} immagini presenti nella cartella di presentazione caso:")
+        rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
+    
+
+
+    
     # SURVEY
 
-    # se non ci sono immagini, esco
-    if count_images_in_folder(file_path_presentazione_caso) == 0:
-        print("Nessuna immagine trovata nella cartella di presentazione caso.")
-        exit(1)
-
-    # rinomino le immagini presenti nella cartella di presentazione caso
-    rename_images_in_folder(file_path_presentazione_caso, "presentazione_caso_")
-    
     index_case = 1 # indice per contare e visualizzare i casi (1, 2, 3...)
-    max_index_case = count_images_in_folder(file_path_presentazione_caso) # numero del caso massimo
+    max_index_case = max_index_case # numero di casi richiesti
     survey_cases = [] # lista di "survey_item" che contiene i casi A e B
     
     
     while (index_case <= max_index_case):
+
         
         # indici specifici per tracciare i gruppi (per la parte di logica)
         a_index = index_case * 2 - 1
         b_index = index_case * 2
+
+        # path immagine da inserire (se presente)
+        if index_case <= num_immagini_presentazione_caso:
+            image_path = f'<img src="{images_path}/{list_immagini_presentazione_caso[index_case - 1]}"/>'
+        else:
+            image_path = ""
 
         ## CASE A
         case = []
@@ -93,7 +138,7 @@ if __name__ == "__main__":
         
         # question
         text =  f'<p>{text_presentazione_caso}</p>'
-        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        text += image_path 
         case.append(question(type_and_scale = "L", name = f"HD{a_index}", text = text, mandatory = "Y"))
         
         # first answer (correct)
@@ -109,7 +154,7 @@ if __name__ == "__main__":
         case.append(question(type_and_scale = "F", name = f"CONF{a_index}", text = text_confidenza_iniziale, mandatory = "Y"))
         
         # subquestion confidenza iniziale
-        case.append(sub_question(type_and_scale = "",name = "CONFI", text = "Confidenza", mandatory="N"))
+        case.append(sub_question(type_and_scale = "", name = "CONFI", text = "Confidenza", mandatory="N"))
         
         # answer 1 "per nulla confidente"
         case.append(answer(name = "1", text = "(Per nulla confidente)"))
@@ -131,7 +176,7 @@ if __name__ == "__main__":
         # question
         text =  f'<p>{text_presentazione_supporto}</p>'
         text += f'<p>{text_presentazione_caso}</p>'
-        text += f'<img src="{images_path}/presentazione_caso_{index_case}.png"/>'
+        text += image_path 
         text += f'<p>{text_advice_1}</p>'
         text += f'<img src="{images_path}/immagineadvice1.png"/>'
         text += f'<p>{text_spiegazione_advice_1}</p>'
@@ -146,7 +191,7 @@ if __name__ == "__main__":
         first_answer = list_decisioni_iniziali[0]
         case.append(answer(name = "1", text = first_answer))
 
-        # risposte rimanenti (sbagliata) (in questo caso sono solo 2)
+        # risposte rimanenti (sbagliate) (in questo caso ci sono 2 riposte iniziali, una giusta e una sbagliata)
         remaining_answers = list_decisioni_iniziali[1:]
         for option in remaining_answers:
             case.append(answer(name = "0", text = option)) 
@@ -187,31 +232,48 @@ if __name__ == "__main__":
 
 
 
-    # OUTPUT
+    # OUTPUT 
     
+    print()
+    
+    # print dei testi letti
+    print(r"** TESTI DI INPUT **")
+    print(r"Testo presentazione caso:", text_presentazione_caso)
+    print(r"Testo presentazione supporto:", text_presentazione_supporto)
+    print(r"Testo confidenza iniziale:", text_confidenza_iniziale)
+    print(r"Testo confidenza finale:", text_confidenza_finale)
+    print(r"Testo advice 1:", text_advice_1)
+    print(r"Testo advice 2:", text_advice_2)
+    print(r"Testo spiegazione advice 1:", text_spiegazione_advice_1)
+    print(r"Testo spiegazione advice 2:", text_spiegazione_advice_2)
+
+    print()
+
+    # print delle risposte
+    print(r"** RISPOSTE DI INPUT **")
+    print(r"Risposte iniziali:", list_decisioni_iniziali)
+    print(r"Risposte finali:", list_decisioni_finali)
+
+    print()
+
     # print dei dati letti
-    print()
-    print(r"testo presentazione caso:", text_presentazione_caso)
-    print(r"testo presentazione supporto:", text_presentazione_supporto)
-    print(r"testo confidenza iniziale:", text_confidenza_iniziale)
-    print(r"testo confidenza finale:", text_confidenza_finale)
-    print(r"testo advice 1:", text_advice_1)
-    print(r"testo advice 2:", text_advice_2)
-    print(r"testo spiegazione advice 1:", text_spiegazione_advice_1)
-    print(r"testo spiegazione advice 2:", text_spiegazione_advice_2)
-
-    print()
-
-    print(r"numeri di casi (A e B):", len(survey_cases))
-    print(r"numero di immagini in Presentazione Caso:", count_images_in_folder(file_path_presentazione_caso))
-
-    print(r"risposte iniziali:", list_decisioni_iniziali)
-    print(r"risposte finali:", list_decisioni_finali)
-    print()
+    print(r"** DATI DI INPUT **")
+    print(r"Numero di casi richiesti:", max_index_case)
+    print(r"Numero di immagini in Presentazione Caso:", num_immagini_presentazione_caso)
+    print(r"Numeri di casi totali generati (A e B):", len(survey_cases))
+    if max_index_case >= num_immagini_presentazione_caso:
+        print(r"Numero di casi senza immagine:", max_index_case - num_immagini_presentazione_caso)
+    if max_index_case < num_immagini_presentazione_caso:
+        print(r"Numero di immagini non utilizzate:", num_immagini_presentazione_caso - max_index_case)
     
-
+    print()
+    print(r"** FILE DI OUTPUT **")
+    
+    
     # copio tutte le immagini nella cartella "images" in output, per poter uploadarle su Limesurvey più comodamente
     copy_images_to_folder(file_path_input, images_path_dir)
+    print(r"Immagini copiate nella cartella:", images_path_dir)
+
 
     # svuoto output.tsv se esiste già
     with open(file_path_output, "w", encoding="utf-8") as f:
@@ -221,6 +283,8 @@ if __name__ == "__main__":
     create_survey(survey_settings, survey_cases, file_path_output)
     # creo il file di output output.txt
     convert_tsv_to_txt(file_path_output, file_path_output.replace(".tsv", ".txt"), delimiter="\t")
+
+    print()
 
 
 
