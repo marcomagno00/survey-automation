@@ -7,7 +7,7 @@ import random
 
 # Questo file Python contiene funzioni utilizzate nel main.py:
 # funzioni per la gestione di file, immagini e cartelle
-# funzioni per la scrittura di file Excel e TSV
+# funzioni per la lettura e scrittura di file TSV
 
 
 def rename_images_in_folder(folder_path, base_name):
@@ -49,7 +49,7 @@ def copy_images_to_folder(source_folder, destination_folder):
         print(f"Error: {e}")
 
 def count_images_in_folder(folder_path):
-    # Common image extensions
+    
     image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp')
     
     try:
@@ -61,10 +61,8 @@ def count_images_in_folder(folder_path):
         return 0
 
 def get_images_from_folder(folder_path):
-    # Estensioni tipiche delle immagini
+    
     image_extensions = ('.jpg', '.jpeg', '.png')
-
-    # Lista per contenere i nomi delle immagini
     image_names = []
 
     # Controlla se la cartella esiste
@@ -78,32 +76,6 @@ def get_images_from_folder(folder_path):
 
     return image_names
 
-def unify_and_randomize_images(cartella_corrette, cartella_sbagliate, output_tsv):
-    # Recupera i path delle immagini
-    immagini_corrette = [
-        os.path.join(cartella_corrette, f) for f in os.listdir(cartella_corrette)
-        if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp'))
-    ]
-    immagini_sbagliate = [
-        os.path.join(cartella_sbagliate, f) for f in os.listdir(cartella_sbagliate)
-        if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp'))
-    ]
-
-    # Associa etichetta 1 a corrette e 0 a sbagliate
-    dati = [(path, 1) for path in immagini_corrette] + [(path, 0) for path in immagini_sbagliate]
-
-    # Mescola i dati
-    random.shuffle(dati)
-
-    # Scrivi in un file TSV
-    with open(output_tsv, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f, delimiter='\t')
-        writer.writerow(['path', 'label'])  # intestazione
-        for path, label in dati:
-            writer.writerow([path, label])
-
-    print(f"File TSV creato con successo: {output_tsv}")
-
 def give_first_txt_from_folder(folder_path):
     # Get the first file from the folder
     for file_name in os.listdir(folder_path):
@@ -116,7 +88,7 @@ def give_first_txt_from_folder(folder_path):
 def read_first_line_from_txt(file_path):
     if file_path is None:
         return None
-    # Open the file and read the first line
+    
     with open(file_path, "r", encoding="utf-8") as file:
         first_line = file.readline().strip()
     return first_line
@@ -125,7 +97,7 @@ def read_all_lines_from_txt(file_path):
     lines = []
     if file_path is None:
         return None
-    # Open the file and read the first line
+    
     with open(file_path, "r", encoding="utf-8") as file:
         for line in file.readlines():
             line = line.strip()
@@ -133,27 +105,8 @@ def read_all_lines_from_txt(file_path):
                 lines.append(line)
     return lines
 
-def write_dataclass_to_excel(dataclass_obj, filename):
-    
-    # Create a new workbook and get the active worksheet
-    workbook = Workbook()
-    worksheet = workbook.active
-
-    # Write headers (the alias if present, otherwise the field name)
-    for col_index, field_info in enumerate(fields(dataclass_obj), start=1):
-        alias = field_info.metadata.get("alias", field_info.name)
-        worksheet.cell(row=1, column=col_index, value=alias)
-        
-    # Write the dataclass object's values
-    for col_index, field_info in enumerate(fields(dataclass_obj), start=1):
-        value = getattr(dataclass_obj, field_info.name)
-        worksheet.cell(row=2, column=col_index, value=value)
-
-    # Save the workbook
-    workbook.save(filename)
-
 def write_dataclass_to_tsv(dataclass_obj, filename):
-    # Extract aliases (or field names if no alias)
+    
     header = []
     row = []
     for field_info in fields(dataclass_obj):
@@ -161,7 +114,7 @@ def write_dataclass_to_tsv(dataclass_obj, filename):
         header.append(alias)
         row.append(getattr(dataclass_obj, field_info.name))
     
-    # Write to CSV
+    # CSV
     with open(filename, mode="w", newline="", encoding="utf-8") as tsv_file:
         writer = csv.writer(tsv_file, delimiter="\t")
         writer.writerow(header)  # Write header row
@@ -169,16 +122,16 @@ def write_dataclass_to_tsv(dataclass_obj, filename):
 
 def add_row_to_tsv(dataclass_obj, filename):
 
-    # Open the TSV file in append mode
+    # TSV
     with open(filename, mode='a', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter="\t")
 
-        # If the file is empty, write the headers first
+        # Se il file è vuoto, scrivi l'intestazione
         if file.tell() == 0:
             headers = [field_info.metadata.get("alias", field_info.name) for field_info in fields(dataclass_obj)]
             writer.writerow(headers)
 
-        # Write the values of the dataclass instance as a new row
+        # aggiungi la riga
         row = [getattr(dataclass_obj, field.name) for field in fields(dataclass_obj)]
         writer.writerow(row)
 
